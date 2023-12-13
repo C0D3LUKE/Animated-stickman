@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Walking Stickman</title>
+</head>
+<body>
+  <div class="stickman-container">
+    <div class="stickman">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="legs">
+        <div class="leg left-leg"></div>
+        <div class="leg right-leg"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.stickman-container {
+  position: relative;
+}
+
+.stickman {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head {
+  width: 30px;
+  height: 30px;
+  background-color: #000;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.body {
+  width: 20px;
+  height: 40px;
+  background-color: #000;
+}
+
+.legs {
+  display: flex;
+}
+
+.leg {
+  width: 10px;
+  height: 30px;
+  background-color: #000;
+  margin: 0 5px;
+}
+
+.left-leg {
+  transform-origin: top;
+}
+
+.right-leg {
+  transform-origin: top;
+}
+document.addEventListener("DOMContentLoaded", function() {
+  const stickman = document.querySelector(".stickman");
+  let isWalking = false;
+
+  function startWalking() {
+    if (!isWalking) {
+      isWalking = true;
+      stickman.classList.add("walk");
+    }
+  }
+
+  function stopWalking() {
+    if (isWalking) {
+      isWalking = false;
+      stickman.classList.remove("walk");
+    }
+  }
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowRight") {
+      startWalking();
+    }
+  });
+
+  document.addEventListener("keyup", function(event) {
+    if (event.key === "ArrowRight") {
+      stopWalking();
+    }
+  });
+});
